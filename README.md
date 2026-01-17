@@ -1,71 +1,71 @@
-# IoT Device Monitoring Platform - dtLabs 2025
+# IoT Device Monitoring Platform
 
-## Visão Geral do Projeto
+## Project Overview
 
-Esta é uma plataforma completa de monitoramento de dispositivos IoT desenvolvida para o exame técnico da dtLabs. A aplicação permite o monitoramento em tempo real de dispositivos IoT com funcionalidades de telemetria, alertas automáticos, análise histórica e gerenciamento completo de dispositivos.
+This is a complete IoT device monitoring platform. The application enables real-time monitoring of IoT devices with telemetry functionalities, automatic alerts, historical analysis, and comprehensive device management.
 
-### Tecnologias Utilizadas
+### Technologies Used
 
 **Backend:**
 - FastAPI (Python 3.11)
-- PostgreSQL (Banco de dados)
+- PostgreSQL (Database)
 - SQLAlchemy (ORM)
 - JWT Authentication
-- WebSockets para tempo real
-- Pydantic para validação
+- WebSockets for real-time
+- Pydantic for validation
 
 **Frontend:**
 - React.js 18
-- Axios para HTTP requests
-- React Router para navegação
-- WebSocket para notificações em tempo real
+- Axios for HTTP requests
+- React Router for navigation
+- WebSocket for real-time notifications
 
 **DevOps:**
 - Docker & Docker Compose
-- Simuladores de dispositivos IoT
-- Makefile para automação
+- IoT device simulators
+- Makefile for automation
 
-## Pré-requisitos para Instalação
+## Installation Prerequisites
 
 ### Windows:
 1. **Docker Desktop** - https://www.docker.com/products/docker-desktop
 2. **Git** - https://git-scm.com/download/win
-3. **Portas disponíveis**: 3000 (Frontend), 8000 (Backend), 5432 (PostgreSQL)
+3. **Available ports**: 3000 (Frontend), 8000 (Backend), 5432 (PostgreSQL)
 
-### Verificação de pré-requisitos:
+### Prerequisites verification:
 ```bash
-# Verificar Docker
+# Check Docker
 docker --version
 docker-compose --version
 
-# Verificar Git
+# Check Git
 git --version
 
-# Verificar portas livres (Windows)
+# Check available ports (Windows)
 netstat -an | findstr ":3000"
 netstat -an | findstr ":8000" 
 netstat -an | findstr ":5432"
 ```
 
-## Instalação Passo a Passo
+## Step-by-Step Installation
 
-### 1. Clonar o Repositório
+### 1. Clone the Repository
 ```bash
-git clone https://github.com/seu-usuario/exame-fullstack-setembro-dtlabs-2025.git
-cd exame-fullstack-setembro-dtlabs-2025
+git clone https://github.com/your-username/iot-monitoring-platform.git
+cd iot-monitoring-platform
 ```
 
-### 2. Estrutura de Arquivos Obrigatória
+### 2. Required File Structure
 ```
-exame-fullstack-setembro-dtlabs-2025/
+iot-monitoring-platform/
 ├── README.md
 ├── docker-compose.yml
-├── Makefile (opcional)
+├── Makefile (optional)
 ├── backend/
 │   ├── Dockerfile
 │   ├── requirements.txt
 │   ├── app/
-│   │   ├── __init__.py (pode ficar vazio)
+│   │   ├── __init__.py (can be empty)
 │   │   ├── main.py
 │   │   ├── database.py
 │   │   ├── models.py
@@ -73,13 +73,13 @@ exame-fullstack-setembro-dtlabs-2025/
 │   │   ├── crud.py
 │   │   ├── auth.py
 │   │   └── routes/
-│   │       ├── __init__.py (pode ficar vazio)
+│   │       ├── __init__.py (can be empty)
 │   │       ├── auth.py
 │   │       ├── devices.py
 │   │       ├── heartbeat.py
 │   │       └── notifications.py
 │   └── tests/
-│       ├── __init__.py (pode ficar vazio)
+│       ├── __init__.py (can be empty)
 │       ├── test_auth.py
 │       └── test_devices.py
 ├── frontend/
@@ -111,157 +111,157 @@ exame-fullstack-setembro-dtlabs-2025/
     └── simulator.py
 ```
 
-### 3. Construir e Executar
+### 3. Build and Run
 ```bash
-# Construir todas as imagens
+# Build all images
 docker-compose build
 
-# Iniciar todos os serviços
+# Start all services
 docker-compose up -d
 
-# Verificar status
+# Check status
 docker-compose ps
 ```
 
-### 4. Verificação de Funcionamento
+### 4. Functionality Verification
 
 **Backend (API):**
 - URL: http://localhost:8000
-- Documentação: http://localhost:8000/docs
+- Documentation: http://localhost:8000/docs
 - Health Check: http://localhost:8000/health
 
 **Frontend:**
 - URL: http://localhost:3000
 
-**Verificação rápida:**
+**Quick verification:**
 ```bash
-# Testar backend
+# Test backend
 curl http://localhost:8000/health
 
-# Ver logs
+# View logs
 docker-compose logs -f
 ```
 
-## Guia Completo de Teste para Avaliadores
+## Complete Testing Guide
 
-### Fase 1: Verificação Inicial da Infraestrutura
+### Phase 1: Initial Infrastructure Verification
 
-1. **Verificar containers rodando:**
+1. **Check running containers:**
 ```bash
 docker-compose ps
-# Deve mostrar todos os containers UP (backend, frontend, postgres, simulators)
+# Should show all containers UP (backend, frontend, postgres, simulators)
 ```
 
-2. **Verificar logs sem erros críticos:**
+2. **Check logs for critical errors:**
 ```bash
 docker-compose logs backend | grep -i error
 docker-compose logs frontend | grep -i error
 ```
 
-3. **Testar conectividade básica:**
+3. **Test basic connectivity:**
 ```bash
 # Backend
 curl http://localhost:8000/
-# Retorna: {"message": "IoT Device Monitoring API"}
+# Returns: {"message": "IoT Device Monitoring API"}
 
-# Documentação da API
-# Abrir http://localhost:8000/docs no navegador
+# API Documentation
+# Open http://localhost:8000/docs in browser
 ```
 
-### Fase 2: Teste da Funcionalidade de Autenticação
+### Phase 2: Authentication Functionality Test
 
-1. **Acessar o frontend:**
-   - Abrir http://localhost:3000
-   - Deve aparecer página de login
+1. **Access the frontend:**
+   - Open http://localhost:3000
+   - Should display login page
 
-2. **Criar conta de usuário:**
-   - Clicar em "Sign up"
-   - Preencher: Nome, Email, Senha
-   - Verificar se redireciona para login
+2. **Create user account:**
+   - Click "Sign up"
+   - Fill in: Name, Email, Password
+   - Verify redirect to login
 
-3. **Fazer login:**
-   - Inserir credenciais criadas
-   - Verificar redirecionamento para dashboard
+3. **Login:**
+   - Enter created credentials
+   - Verify redirect to dashboard
 
-4. **Teste via API (opcional):**
+4. **API test (optional):**
 ```bash
-# Registrar usuário
+# Register user
 curl -X POST http://localhost:8000/api/auth/register \
   -H "Content-Type: application/json" \
   -d '{"name": "Test User", "email": "test@example.com", "password": "test123"}'
 
-# Fazer login
+# Login
 curl -X POST http://localhost:8000/api/auth/login \
   -H "Content-Type: application/json" \
   -d '{"email": "test@example.com", "password": "test123"}'
 ```
 
-### Fase 3: Teste do CRUD de Dispositivos
+### Phase 3: Device CRUD Test
 
-1. **Adicionar dispositivos (via interface):**
-   - Ir para "Manage Devices"
-   - Clicar "Add Device"
-   - Criar estes dispositivos para coincidir com os simuladores:
+1. **Add devices (via interface):**
+   - Go to "Manage Devices"
+   - Click "Add Device"
+   - Create these devices to match the simulators:
 
-**Dispositivo 1:**
+**Device 1:**
 ```
-Nome: Server Room Sensor
-Localização: Data Center - Rack A1
+Name: Server Room Sensor
+Location: Data Center - Rack A1
 Serial Number: SRV001234567
-Descrição: Sensor principal do servidor
+Description: Main server sensor
 ```
 
-**Dispositivo 2:**
+**Device 2:**
 ```
-Nome: Office Environment Monitor  
-Localização: Building B - Floor 3
+Name: Office Environment Monitor  
+Location: Building B - Floor 3
 Serial Number: OFF987654321
-Descrição: Monitor do ambiente do escritório
+Description: Office environment monitor
 ```
 
-**Dispositivo 3:**
+**Device 3:**
 ```
-Nome: IoT Gateway Device
-Localização: Warehouse - Section C  
+Name: IoT Gateway Device
+Location: Warehouse - Section C  
 Serial Number: IOT555666777
-Descrição: Gateway IoT do armazém
+Description: Warehouse IoT gateway
 ```
 
-2. **Verificar CRUD via API:**
+2. **Verify CRUD via API:**
 ```bash
-# Obter token (salvar o access_token)
+# Get token (save the access_token)
 TOKEN=$(curl -X POST http://localhost:8000/api/auth/login \
   -H "Content-Type: application/json" \
   -d '{"email": "test@example.com", "password": "test123"}' | jq -r '.access_token')
 
-# Listar dispositivos
+# List devices
 curl -X GET http://localhost:8000/api/devices/ \
   -H "Authorization: Bearer $TOKEN"
 
-# Criar dispositivo via API
+# Create device via API
 curl -X POST http://localhost:8000/api/devices/ \
   -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
-  -d '{"name": "Test Device", "location": "Test Lab", "sn": "TEST12345678", "description": "Dispositivo de teste"}'
+  -d '{"name": "Test Device", "location": "Test Lab", "sn": "TEST12345678", "description": "Test device"}'
 ```
 
-### Fase 4: Verificação dos Simuladores de Telemetria
+### Phase 4: Telemetry Simulators Verification
 
-1. **Verificar simuladores ativos:**
+1. **Check active simulators:**
 ```bash
 docker-compose logs simulator-1 | tail -n 10
 docker-compose logs simulator-2 | tail -n 10  
 docker-compose logs simulator-3 | tail -n 10
 ```
 
-2. **Verificar envio de heartbeats:**
+2. **Verify heartbeat sending:**
 ```bash
-# Ver logs do backend para heartbeats recebidos
+# View backend logs for received heartbeats
 docker-compose logs backend | grep "POST /api/heartbeat/"
-# Deve mostrar status 200 OK, não 404
+# Should show status 200 OK, not 404
 ```
 
-3. **Testar envio manual de heartbeat:**
+3. **Test manual heartbeat sending:**
 ```bash
 curl -X POST http://localhost:8000/api/heartbeat/ \
   -H "Content-Type: application/json" \
@@ -277,264 +277,262 @@ curl -X POST http://localhost:8000/api/heartbeat/ \
   }'
 ```
 
-### Fase 5: Teste das Páginas do Frontend
+### Phase 5: Frontend Pages Test
 
 1. **Dashboard (Home):**
-   - Verificar se mostra dispositivos cadastrados
-   - Verificar se exibe métricas atuais (CPU, RAM, Temperatura)
-   - Verificar status de conectividade
+   - Verify it shows registered devices
+   - Verify it displays current metrics (CPU, RAM, Temperature)
+   - Verify connectivity status
 
 2. **Device Analytics:**
-   - Selecionar dispositivos via checkbox
-   - Alterar período de análise
-   - Verificar se carrega dados históricos em tabelas
+   - Select devices via checkbox
+   - Change analysis period
+   - Verify historical data loads in tables
 
-3. **Página de Notificações:**
-   - Criar notificação de teste:
-     - Nome: "High CPU Alert"
-     - Métrica: CPU Usage
-     - Condição: >
-     - Threshold: 60 (valor baixo para teste)
-     - Dispositivo: IoT Gateway Device
-   - Salvar notificação
-   - Aguardar alertas aparecerem automaticamente
+3. **Notifications Page:**
+   - Create test notification:
+     - Name: "High CPU Alert"
+     - Metric: CPU Usage
+     - Condition: >
+     - Threshold: 60 (low value for testing)
+     - Device: IoT Gateway Device
+   - Save notification
+   - Wait for alerts to appear automatically
 
 4. **Device Management:**
-   - Testar edição de dispositivo
-   - Testar exclusão de dispositivo
-   - Verificar validação de serial number (12 dígitos)
+   - Test device editing
+   - Test device deletion
+   - Verify serial number validation (12 digits)
 
-### Fase 6: Teste de Notificações em Tempo Real
+### Phase 6: Real-Time Notifications Test
 
-1. **Configurar notificação de teste:**
-   - Criar alerta para CPU > 50% no dispositivo IOT555666777
-   - Este dispositivo tem carga alta e deve gerar alertas
+1. **Configure test notification:**
+   - Create alert for CPU > 50% on device IOT555666777
+   - This device has high load and should generate alerts
 
-2. **Verificar WebSocket:**
-   - Manter página de notificações aberta
-   - Verificar se alertas aparecem automaticamente
-   - Verificar timestamp dos alertas
+2. **Verify WebSocket:**
+   - Keep notifications page open
+   - Verify alerts appear automatically
+   - Verify alert timestamps
 
-3. **Teste via logs:**
+3. **Test via logs:**
 ```bash
-# Verificar WebSocket connections
+# Check WebSocket connections
 docker-compose logs backend | grep -i websocket
 
-# Ver notificações sendo criadas
+# View notifications being created
 docker-compose logs backend | grep -i notification
 ```
 
-### Fase 7: Teste de Dados Históricos
+### Phase 7: Historical Data Test
 
-1. **Aguardar acumulação de dados (5-10 minutos):**
-   - Os simuladores enviam dados a cada minuto
-   - Verificar acumulação no banco
+1. **Wait for data accumulation (5-10 minutes):**
+   - Simulators send data every minute
+   - Verify accumulation in database
 
-2. **Consultar histórico via API:**
+2. **Query history via API:**
 ```bash
-# Obter ID de um dispositivo e consultar histórico
-DEVICE_ID="substitua-pelo-id-real"
+# Get a device ID and query history
+DEVICE_ID="replace-with-real-id"
 curl -X GET "http://localhost:8000/api/heartbeat/${DEVICE_ID}/history?start_date=2025-01-19T00:00:00Z&end_date=2025-01-19T23:59:59Z" \
   -H "Authorization: Bearer $TOKEN"
 ```
 
-3. **Verificar na interface:**
-   - Ir para Device Analytics
-   - Selecionar dispositivo
-   - Verificar dados na tabela
+3. **Verify in interface:**
+   - Go to Device Analytics
+   - Select device
+   - Verify data in table
 
-### Fase 8: Testes de Validação e Segurança
+### Phase 8: Validation and Security Tests
 
-1. **Testar autenticação:**
+1. **Test authentication:**
 ```bash
-# Tentar acessar rota protegida sem token (deve retornar 401)
+# Try to access protected route without token (should return 401)
 curl -X GET http://localhost:8000/api/devices/
 
-# Tentar com token inválido
+# Try with invalid token
 curl -X GET http://localhost:8000/api/devices/ \
-  -H "Authorization: Bearer token_invalido"
+  -H "Authorization: Bearer invalid_token"
 ```
 
-2. **Testar validação de dados:**
+2. **Test data validation:**
 ```bash
-# Heartbeat inválido (deve retornar 422)
+# Invalid heartbeat (should return 422)
 curl -X POST http://localhost:8000/api/heartbeat/ \
   -H "Content-Type: application/json" \
   -d '{"device_sn": "INVALID", "cpu_usage": 150}'
 ```
 
-### Fase 9: Teste de Performance e Robustez
+### Phase 9: Performance and Robustness Test
 
-1. **Múltiplos heartbeats simultâneos:**
+1. **Multiple simultaneous heartbeats:**
 ```bash
-# Ver se o sistema aguenta múltiplos simuladores
+# Check if system handles multiple simulators
 docker-compose logs | grep "POST /api/heartbeat/" | wc -l
-# Deve mostrar número crescente de heartbeats
+# Should show increasing number of heartbeats
 ```
 
-2. **Verificar uso de recursos:**
+2. **Check resource usage:**
 ```bash
 docker stats
 ```
 
-## Funcionalidades Implementadas (Checklist para Avaliadores)
+## Implemented Features (Checklist)
 
 ### Backend (FastAPI)
-- [x] Autenticação JWT com senhas hasheadas (bcrypt)
-- [x] CRUD completo de usuários
-- [x] CRUD completo de dispositivos
-- [x] Recepção e validação de telemetria (heartbeats)
-- [x] Sistema de notificações com condições personalizáveis
-- [x] WebSocket para notificações em tempo real
-- [x] Consultas históricas de telemetria
-- [x] Tratamento de erros com status codes apropriados
-- [x] Validação rigorosa de dados com Pydantic
-- [x] Documentação automática Swagger/OpenAPI
+- [x] JWT authentication with hashed passwords (bcrypt)
+- [x] Complete user CRUD
+- [x] Complete device CRUD
+- [x] Telemetry reception and validation (heartbeats)
+- [x] Notification system with customizable conditions
+- [x] WebSocket for real-time notifications
+- [x] Historical telemetry queries
+- [x] Error handling with appropriate status codes
+- [x] Strict data validation with Pydantic
+- [x] Automatic Swagger/OpenAPI documentation
 
 ### Frontend (React.js)
-- [x] Página de login/registro
-- [x] Dashboard com resumo dos dispositivos
-- [x] Análise histórica com filtros de data
-- [x] Sistema de notificações em tempo real
-- [x] CRUD de dispositivos com interface intuitiva
-- [x] Navegação entre páginas com React Router
-- [x] Interface responsiva
-- [x] Tratamento de erros e loading states
+- [x] Login/registration page
+- [x] Dashboard with device summary
+- [x] Historical analysis with date filters
+- [x] Real-time notification system
+- [x] Device CRUD with intuitive interface
+- [x] Page navigation with React Router
+- [x] Responsive interface
+- [x] Error handling and loading states
 
-### Simuladores
-- [x] 3 simuladores independentes
-- [x] Dados realistas com variações e tendências
-- [x] Picos ocasionais de CPU
-- [x] Problemas esporádicos de conectividade
-- [x] Configuráveis via variáveis de ambiente
-- [x] Envio a cada minuto conforme especificado
+### Simulators
+- [x] 3 independent simulators
+- [x] Realistic data with variations and trends
+- [x] Occasional CPU spikes
+- [x] Sporadic connectivity issues
+- [x] Configurable via environment variables
+- [x] Sending every minute as specified
 
 ### DevOps
-- [x] Docker Compose funcional
-- [x] Todos os serviços containerizados
-- [x] Configuração de rede entre containers
-- [x] Volumes persistentes para banco de dados
-- [x] Health checks para serviços críticos
+- [x] Functional Docker Compose
+- [x] All containerized services
+- [x] Network configuration between containers
+- [x] Persistent volumes for database
+- [x] Health checks for critical services
 
-## Métricas Monitoradas (Conforme Especificação)
+## Monitored Metrics
 
-Cada dispositivo envia estas métricas exatamente como solicitado:
+Each device sends these metrics exactly as requested:
 
-1. **CPU Usage** - Percentual (0-100%)
-2. **RAM Usage** - Percentual (0-100%)
-3. **Disk Free Space** - Percentual (0-100%)
-4. **Temperature** - Graus Celsius
-5. **DNS Latency** - Milissegundos para 8.8.8.8
-6. **Connectivity** - 0 (offline) ou 1 (online)
-7. **Boot Time** - Timestamp UTC quando dispositivo foi ligado
+1. **CPU Usage** - Percentage (0-100%)
+2. **RAM Usage** - Percentage (0-100%)
+3. **Disk Free Space** - Percentage (0-100%)
+4. **Temperature** - Degrees Celsius
+5. **DNS Latency** - Milliseconds to 8.8.8.8
+6. **Connectivity** - 0 (offline) or 1 (online)
+7. **Boot Time** - UTC timestamp when device was powered on
 
-## Comandos Úteis para Avaliação
+## Useful Commands
 
-### Monitoramento durante avaliação:
+### Monitoring during evaluation:
 ```bash
-# Logs em tempo real de todos os serviços
+# Real-time logs of all services
 docker-compose logs -f
 
-# Status dos containers
+# Container status
 docker-compose ps
 
-# Logs específicos
+# Specific logs
 docker-compose logs -f backend
 docker-compose logs -f frontend
 docker-compose logs -f simulator-1
 
-# Reiniciar serviço específico
+# Restart specific service
 docker-compose restart backend
 
-# Ver banco de dados
+# View database
 docker-compose exec postgres psql -U user -d iot_monitoring -c "SELECT COUNT(*) FROM heartbeats;"
 ```
 
-### Limpeza após avaliação:
+### Cleanup after evaluation:
 ```bash
-# Parar tudo
+# Stop everything
 docker-compose down
 
-# Remover dados (cuidado)
+# Remove data (careful)
 docker-compose down -v
 
-# Remover imagens
+# Remove images
 docker-compose down --rmi all
 ```
 
-## Resolução de Problemas Comuns
+## Common Troubleshooting
 
-### Containers não sobem:
+### Containers won't start:
 ```bash
-# Verificar portas em uso
+# Check ports in use
 netstat -an | findstr :3000
 
-# Limpar Docker
+# Clean Docker
 docker system prune -a
 docker-compose build --no-cache
 ```
 
-### Simuladores não enviam dados:
+### Simulators not sending data:
 ```bash
-# Verificar logs
+# Check logs
 docker-compose logs simulator-1
 
-# Verificar se dispositivos existem no banco
+# Check if devices exist in database
 docker-compose exec postgres psql -U user -d iot_monitoring -c "SELECT * FROM devices;"
 ```
 
-### Frontend não carrega:
+### Frontend won't load:
 ```bash
-# Aguardar build do Node.js
+# Wait for Node.js build
 docker-compose logs frontend
 
-# Reconstruir
+# Rebuild
 docker-compose build frontend
 ```
 
-## Critérios de Avaliação Atendidos
+## Evaluation Criteria Met
 
-### ✅ Velocidade de Entrega
-- Projeto completo e funcional
-- Todas as funcionalidades implementadas
-- Documentação detalhada
+### ✅ Delivery Speed
+- Complete and functional project
+- All features implemented
+- Detailed documentation
 
-### ✅ Qualidade dos Testes
-- Testes automatizados em backend/tests/
-- Casos de teste para autenticação e CRUD
-- Instruções detalhadas para teste manual
+### ✅ Test Quality
+- Automated tests in backend/tests/
+- Test cases for authentication and CRUD
+- Detailed manual testing instructions
 
-### ✅ Estrutura da Aplicação  
-- Arquitetura limpa e organizada
-- Separação clara de responsabilidades
-- Padrões de projeto aplicados (Repository, MVC)
+### ✅ Application Structure  
+- Clean and organized architecture
+- Clear separation of responsibilities
+- Applied design patterns (Repository, MVC)
 
-### ✅ Coerência com Solicitado
-- Todas as páginas especificadas implementadas
-- Métricas exatas conforme documento
-- Docker Compose funcional
-- Simuladores de heartbeat funcionando
+### ✅ Requirements Compliance
+- All specified pages implemented
+- Exact metrics as per document
+- Functional Docker Compose
+- Working heartbeat simulators
 
-### ✅ Tratamento de Erros
-- Status codes HTTP apropriados
-- Validação rigorosa de dados
-- Tratamento de exceções
-- Messages de erro informativos
+### ✅ Error Handling
+- Appropriate HTTP status codes
+- Strict data validation
+- Exception handling
+- Informative error messages
 
-### ✅ Verbos HTTP e Headers Corretos
-- GET, POST, PUT, DELETE usados apropriadamente
-- Headers de autorização implementados
-- Content-Type corretos
-- CORS configurado
+### ✅ Correct HTTP Verbs and Headers
+- GET, POST, PUT, DELETE used appropriately
+- Authorization headers implemented
+- Correct Content-Type
+- CORS configured
 
-### ✅ Documentação
-- README completo com instruções passo a passo
-- Documentação API automática (Swagger)
-- Comentários no código
-- Guia de troubleshooting
+### ✅ Documentation
+- Complete README with step-by-step instructions
+- Automatic API documentation (Swagger)
+- Code comments
+- Troubleshooting guide
 
-## Contato e Suporte
+## Contact and Support
 
-**Desenvolvido para dtLabs 2025**
-
-Para dúvidas sobre a implementação ou problemas técnicos durante a avaliação, todos os logs e configurações estão disponíveis via Docker Compose.
+All logs and configurations are available via Docker Compose.
